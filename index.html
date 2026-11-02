@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Mamá! ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff0f3;
+            text-align: center;
+            padding: 20px;
+            color: #d81159;
+        }
+        h1 {
+            margin-bottom: 5px;
+        }
+        .galeria {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .botones {
+            margin-top: 15px;
+        }
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #c9184a;
+        }
+        p {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¡Feliz Cumpleaños Mamá! ❤️</h1>
+    <h3>Nuestros Mejores Recuerdos</h3>
+
+    <div class="galeria">
+        <img id="imagen-album" src="" alt="Foto de recuerdo">
+        <p id="pie-foto">¡Gracias por ser la mejor mamá del mundo!</p>
+        
+        <div class="botones">
+            <button onclick="cambiarFoto(-1)">◀ Anterior</button>
+            <button onclick="cambiarFoto(1)">Siguiente ▶</button>
+        </div>
+    </div>
+
+    <script>
+        // LISTA DE FOTOS: Cambia los nombres por los archivos que subas a tu carpeta 'fotos'
+        const fotos = [
+            "fotos/foto1.jpg",
+            "fotos/foto2.jpg",
+            "fotos/foto3.jpg"
+        ];
+
+        let indiceActual = 0;
+        const imgElement = document.getElementById("imagen-album");
+
+        function actualizarImagen() {
+            if (fotos.length > 0) {
+                imgElement.src = fotos[indiceActual];
+            }
+        }
+
+        function cambiarFoto(direccion) {
+            indiceActual += direccion;
+            if (indiceActual < 0) {
+                indiceActual = fotos.length - 1;
+            } else if (indiceActual >= fotos.length) {
+                indiceActual = 0;
+            }
+            actualizarImagen();
+        }
+
+        // Cargar la primera foto al abrir la página
+        actualizarImagen();
+    </script>
+
+</body>
+</html>
