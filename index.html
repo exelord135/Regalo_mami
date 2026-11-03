@@ -11,25 +11,39 @@
             text-align: center;
             padding: 20px;
             color: #d81159;
+            margin: 0;
         }
         h1 {
             margin-bottom: 5px;
         }
         .galeria {
-            max-width: 500px;
+            max-width: 600px;
             margin: 20px auto;
             background: white;
             padding: 15px;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
-        img {
+        .contenedor-imagen {
             width: 100%;
-            height: auto;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fafafa;
             border-radius: 10px;
+            overflow: hidden;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .botones {
             margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         button {
             background-color: #ff4d6d;
@@ -39,14 +53,19 @@
             font-size: 16px;
             border-radius: 8px;
             cursor: pointer;
-            margin: 0 10px;
+            transition: background-color 0.2s;
         }
         button:hover {
             background-color: #c9184a;
         }
-        p {
+        .pie-foto {
             font-style: italic;
             color: #555;
+            margin-top: 15px;
+        }
+        .contador {
+            font-weight: bold;
+            color: #ff4d6d;
         }
     </style>
 </head>
@@ -56,29 +75,44 @@
     <h3>Nuestros Mejores Recuerdos</h3>
 
     <div class="galeria">
-        <img id="imagen-album" src="" alt="Foto de recuerdo">
-        <p id="pie-foto">¡Gracias por ser la mejor mamá del mundo!</p>
+        <div class="contenedor-imagen">
+            <img id="imagen-album" src="" alt="Foto de recuerdo">
+        </div>
+        
+        <p class="pie-foto" id="pie-foto">¡Gracias por ser la mejor mamá del mundo!</p>
         
         <div class="botones">
             <button onclick="cambiarFoto(-1)">◀ Anterior</button>
+            <span class="contador" id="contador-fotos">1 / 31</span>
             <button onclick="cambiarFoto(1)">Siguiente ▶</button>
         </div>
     </div>
 
     <script>
-        // LISTA DE FOTOS: Cambia los nombres por los archivos que subas a tu carpeta 'fotos'
+        // Lista con los nombres originales de tus 31 imágenes
         const fotos = [
-            "fotos/foto1.jpg",
-            "fotos/foto2.jpg",
-            "fotos/foto3.jpg"
+            "fotos/591023334_18543989785044643_3078671062263735754_n.jpg",
+            "fotos/591113262_18543989794044643_4402762478010396598_n.jpg",
+            "fotos/598558722_18544905004044643_8548658608018758184_n.jpg",
+            "fotos/599089159_18544904761044643_7581279247409055564_n.jpg",
+            "fotos/599112092_18544904824044643_2887823196378221904_n.jpg",
+            "fotos/599418895_18544904686044643_6317602092716948956_n.jpg",
+            "fotos/599498836_18544904782044643_2247636328602120436_n.jpg",
+            "fotos/599750840_18544904860044643_7212232194575264881_n.jpg",
+            "fotos/655959543_18572112130044643_3715485446612944372_n.jpg",
+            "fotos/74429405_3856379304388301_2595190188531515392_n.jpg",
+            // Agrega aquí abajo las rutas de tus 21 imágenes restantes manteniendo el formato:
+            // "fotos/nombre_de_la_foto.jpg",
         ];
 
         let indiceActual = 0;
         const imgElement = document.getElementById("imagen-album");
+        const contadorElement = document.getElementById("contador-fotos");
 
         function actualizarImagen() {
             if (fotos.length > 0) {
                 imgElement.src = fotos[indiceActual];
+                contadorElement.textContent = `${indiceActual + 1} / ${fotos.length}`;
             }
         }
 
@@ -92,7 +126,7 @@
             actualizarImagen();
         }
 
-        // Cargar la primera foto al abrir la página
+        // Cargar la primera foto al iniciar
         actualizarImagen();
     </script>
 
