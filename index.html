@@ -1,134 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Mamá! ❤️</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fff0f3;
-            text-align: center;
-            padding: 20px;
-            color: #d81159;
-            margin: 0;
-        }
-        h1 {
-            margin-bottom: 5px;
-        }
-        .galeria {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
-        .contenedor-imagen {
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fafafa;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .botones {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        button {
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #c9184a;
-        }
-        .pie-foto {
-            font-style: italic;
-            color: #555;
-            margin-top: 15px;
-        }
-        .contador {
-            font-weight: bold;
-            color: #ff4d6d;
-        }
-    </style>
-</head>
-<body>
+<h1>¡Feliz Cumpleaños Mamá! ❤️</h1>
+<h3>Nuestros Mejores Recuerdos</h3>
 
-    <h1>¡Feliz Cumpleaños Mamá! ❤️</h1>
-    <h3>Nuestros Mejores Recuerdos</h3>
-
-    <div class="galeria">
-        <div class="contenedor-imagen">
-            <img id="imagen-album" src="" alt="Foto de recuerdo">
-        </div>
-        
-        <p class="pie-foto" id="pie-foto">¡Gracias por ser la mejor mamá del mundo!</p>
-        
-        <div class="botones">
-            <button onclick="cambiarFoto(-1)">◀ Anterior</button>
-            <span class="contador" id="contador-fotos">1 / 31</span>
-            <button onclick="cambiarFoto(1)">Siguiente ▶</button>
-        </div>
+<div class="galeria">
+    <div class="contenedor-imagen">
+        <img id="imagen-album" src="" alt="Foto de recuerdo">
     </div>
+    
+    <p class="pie-foto" id="pie-foto">¡Gracias por ser la mejor mamá del mundo!</p>
+    
+    <div class="botones">
+        <button onclick="cambiarFoto(-1)">◀ Anterior</button>
+        <span class="contador" id="contador-fotos">1 / 31</span>
+        <button onclick="cambiarFoto(1)">Siguiente ▶</button>
+    </div>
+</div>
 
-    <script>
-        // Lista con los nombres originales de tus 31 imágenes
-        const fotos = [
-            "fotos/591023334_18543989785044643_3078671062263735754_n.jpg",
-            "fotos/591113262_18543989794044643_4402762478010396598_n.jpg",
-            "fotos/598558722_18544905004044643_8548658608018758184_n.jpg",
-            "fotos/599089159_18544904761044643_7581279247409055564_n.jpg",
-            "fotos/599112092_18544904824044643_2887823196378221904_n.jpg",
-            "fotos/599418895_18544904686044643_6317602092716948956_n.jpg",
-            "fotos/599498836_18544904782044643_2247636328602120436_n.jpg",
-            "fotos/599750840_18544904860044643_7212232194575264881_n.jpg",
-            "fotos/655959543_18572112130044643_3715485446612944372_n.jpg",
-            "fotos/74429405_3856379304388301_2595190188531515392_n.jpg",
-            // Agrega aquí abajo las rutas de tus 21 imágenes restantes manteniendo el formato:
-            // "fotos/nombre_de_la_foto.jpg",
-        ];
+<script>
+    // Genera automáticamente la lista de foto1.jpg a foto31.jpg
+    const fotos = [];
+    for (let i = 1; i <= 31; i++) {
+        fotos.push(`fotos/foto${i}.jpg`);
+    }
 
-        let indiceActual = 0;
-        const imgElement = document.getElementById("imagen-album");
-        const contadorElement = document.getElementById("contador-fotos");
+    let indiceActual = 0;
+    const imgElement = document.getElementById("imagen-album");
+    const contadorElement = document.getElementById("contador-fotos");
 
-        function actualizarImagen() {
-            if (fotos.length > 0) {
-                imgElement.src = fotos[indiceActual];
-                contadorElement.textContent = `${indiceActual + 1} / ${fotos.length}`;
-            }
+    function actualizarImagen() {
+        if (fotos.length > 0) {
+            imgElement.src = fotos[indiceActual];
+            contadorElement.textContent = `${indiceActual + 1} / ${fotos.length}`;
         }
+    }
 
-        function cambiarFoto(direccion) {
-            indiceActual += direccion;
-            if (indiceActual < 0) {
-                indiceActual = fotos.length - 1;
-            } else if (indiceActual >= fotos.length) {
-                indiceActual = 0;
-            }
-            actualizarImagen();
+    function cambiarFoto(direccion) {
+        indiceActual += direccion;
+        if (indiceActual < 0) {
+            indiceActual = fotos.length - 1;
+        } else if (indiceActual >= fotos.length) {
+            indiceActual = 0;
         }
-
-        // Cargar la primera foto al iniciar
         actualizarImagen();
-    </script>
+    }
 
-</body>
-</html>
+    // Cargar la primera foto al iniciar
+    actualizarImagen();
+</script>
